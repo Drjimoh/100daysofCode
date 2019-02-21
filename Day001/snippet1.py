@@ -5,27 +5,8 @@
 
 
 #defining global variables
-list_of_departments = []
 dictionary_of_staff_in_department = {}
-
-
-def add_dept(*args):
-	'''
-		this function creates departments only if the 
-		department doesnt exist as at the time of 
-		creation
-	'''
-	for arg in args:
-		if arg.upper() not in list_of_departments:
-			#I had to put the string in Uppercase
-			#to avoid multiple entries in mixedcase
-			#for example Audit, AUdit, AuDIT
-			list_of_departments.append(arg.upper())
-		else:
-			print('%s department already exists' %arg)
-	return list_of_departments
-
-
+key_list = []
 
 def stafflist(department, employees):
 	'''this is a function for computing staff list
@@ -38,7 +19,17 @@ def stafflist(department, employees):
 		print(e)
 		return None
 	#lets update our dictionary of staff list
-	dictionary_of_staff_in_department.update({department.upper():employees})
+	if len(dictionary_of_staff_in_department) == 0:
+		dictionary_of_staff_in_department.update({department.upper():employees})
+	else:
+		for key, value in dictionary_of_staff_in_department.items():
+			key_list.append(key)
+		print(key_list)
+		for key in key_list:
+			if key.upper() != department.upper():
+				dictionary_of_staff_in_department.update({department.upper():employees})
+
+
 
 
 
@@ -46,11 +37,12 @@ if __name__ == '__main__':
 
 	#calling our functions
 	#adding departments
-	add_dept('Finance', 'Admin', 'Hr')
+	#add_dept('Finance', 'Admin', 'Hr')
 	#adding stafflists
 	stafflist('Finance', ['Labake James', 'Omoraigbe Solomon', 'Okobenson Peter'])
 	stafflist('Admin', ['Jimoh Waliu', 'Ekwesi Mamoh', 'Amaka Inec'])
 	stafflist('Hr', ['Buhari Mohammadu', 'Saraki Bukola', 'Oshiomole Adams'])
+	#stafflist('Admin', ['Jimoh Wali Junior'])
 
 	#let us check if our codes work correctly
 	for key, values in dictionary_of_staff_in_department.items():
