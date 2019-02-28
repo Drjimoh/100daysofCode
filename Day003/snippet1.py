@@ -12,7 +12,6 @@
 dictionary_of_staff_in_department = {}
 key_list = []
 
-
 #defining decoration function
 def add_salary(func):
 	#lets define a wrapper function that modifies the employees list
@@ -24,9 +23,6 @@ def add_salary(func):
 			employees[employees.index(employee)] = employee + ' to collect ' + str(amount)
 		return func(department, employees)
 	return wrapper
-
-
-
 
 
 @add_salary
@@ -50,10 +46,6 @@ def stafflist(department, employees):
 			if key.upper() != department.upper():
 				dictionary_of_staff_in_department.update({department.upper():employees})
 
-
-
-
-
 #calling the decorated stafflist function
 stafflist('Security', ['Mamud Inec', 'Bakare Peters'], amount=1000)
 stafflist('Admin', ['Jimoh Waliu', 'Ekwesi Mamoh', 'Amaka Inec'], amount=200000)
@@ -61,3 +53,4 @@ stafflist('Admin', ['Jimoh Waliu', 'Ekwesi Mamoh', 'Amaka Inec'], amount=200000)
 #lets check what we have
 for key, values in dictionary_of_staff_in_department.items():
 	print(key, values)
+
